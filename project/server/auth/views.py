@@ -59,15 +59,14 @@ class Users(MethodView):
     def get(self):
         try:
             users = User.query.all()
-            user_text = ""
-            for user in users:
-                user_text += '<p>' + user.email + '</p>'
-            return user_text
+            #user_text = ""
+            #for user in users:
+            #    user_text += "<p>" + user.email + "</p>"
+            #return user_text
+            return jsonify(users)
         except Exception as e:
             # e holds description of the error
-            error_text = "<p>The error:<br>" + str(e) + "</p>"
-            hed = '<h1>Something is broken.</h1>'
-            return hed + error_text
+            return "Something went wrong"
 
 
 # define the API resources
