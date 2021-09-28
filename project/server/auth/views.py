@@ -57,27 +57,16 @@ class RegisterAPI(MethodView):
 
 class Users(MethodView):
     def get(self):
-        """ try:
-                users = User.query.all()
-                user_text = ""
-                for user in users:
-                    user_text += "<p>" + user.email + "</p>"
-                return user_text
-            except Exception as e:
-                error_text = "<p>The error:<br>" + str(e) + "</p>"
-                header = '<h1>Something is broken.</h1>'
-                return header + error_text """
-        rows = User.query.all()
-        tmpUsers = {}
-        users = []
-
-        columns = User.__table__.columns.keys()
-        for r in rows:
-            for c in columns:
-                tmpUsers[c] = getattr(r, c)
-            users.append(tmpUsers)
-            tmpUsers = {}
-        return make_response(jsonify(users)), 201
+        try:
+            users = User.query.all()
+            user_text = ""
+            for user in users:
+                user_text += "<p>" + user.email + "</p>"
+            return user_text
+        except Exception as e:
+            error_text = "<p>The error:<br>" + str(e) + "</p>"
+            header = '<h1>Something is broken.</h1>'
+            return header + error_text
 
 
 # define the API resources
