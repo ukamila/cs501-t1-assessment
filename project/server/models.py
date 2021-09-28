@@ -56,5 +56,6 @@ class User(db.Model):
         except jwt.InvalidTokenError:
             return 'Invalid token. Please log in again.'
 
+@app.before_first_request
 def create_tables():
     db.create_all()
