@@ -64,8 +64,9 @@ class Users(MethodView):
                 user_text += "<p>" + user.email + "</p>"
             return user_text
         except Exception as e:
-            # e holds description of the error
-            return "<p> Something went wrong </p>"
+            error_text = "<p>The error:<br>" + str(e) + "</p>"
+            header = '<h1>Something is broken.</h1>'
+            return header + error_text
 
 
 # define the API resources
